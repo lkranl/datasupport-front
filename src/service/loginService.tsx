@@ -1,14 +1,14 @@
-import { LoginUser } from "../models/userLogin"
+import { API_URL } from "../models/api"
+import { LoginUser } from "../models/user"
 
 export const LoginService = async (body: LoginUser):Promise<boolean|void> => {
-    console.log(body);
-    
     return await fetch(
-        'http://20.55.68.236:8080/auth/login',
+        API_URL+'/auth/login',
         {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
+                'access-control-allow-origin': '*',
                 'accept': '*/*'
             },
             body: JSON.stringify(body)

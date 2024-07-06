@@ -1,7 +1,8 @@
-import { Outlet, redirect } from "react-router-dom";
+import LogoutOutlined from "@mui/icons-material/LogoutOutlined";
+import { Link, Outlet, redirect } from "react-router-dom";
 
 export const RootLoader = async () => {
-    let loggedOut = sessionStorage.getItem('token')===null
+    const loggedOut = sessionStorage.getItem('token')===null
     if (loggedOut){
       return redirect('/login')
     }
@@ -11,11 +12,15 @@ export const RootLoader = async () => {
 export const Root = () => {
     const logout  = () => {
         sessionStorage.removeItem('token')
+        sessionStorage.removeItem('username')
         location.reload()
     }
     return(
         <>
-            <p>Hello world! navbar: <a href='' onClick={logout} >logout</a> </p>
+            <nav className="nav-bar">
+                <h3 className="nav-title">DataSupport</h3>
+                <Link className="nav-item" to={''} onClick={logout} ><LogoutOutlined />Logout</Link>
+            </nav>
             <Outlet />
         </>
     )

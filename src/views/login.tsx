@@ -1,10 +1,10 @@
-import { redirect } from "react-router-dom"
-import './login.css'
+import { Link, redirect } from "react-router-dom"
+import './styles.css'
 import { FormControl, FormHelperText, InputLabel, Input, Button } from "@mui/material"
 import { FormEvent, useState } from "react"
 import AccountCircleIconOutlined from '@mui/icons-material/AccountCircleOutlined';
 import LockPersonOutlinedIcon from '@mui/icons-material/LockPersonOutlined';
-import { LoginUser } from "../models/userLogin";
+import { LoginUser } from "../models/user";
 import { LoginService } from "../service/loginService";
 
 export const LoginLoader = async () => {
@@ -18,15 +18,19 @@ export const LoginLoader = async () => {
 export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState(false)
     const user:LoginUser = {
         email: email,
         password: password
     }
     const onSubmit = async (e: FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
+        sessionStorage.setItem('username', email)
         const success = await LoginService(user)
         if (success)
             location.reload()
+        else
+            setError(success as boolean)
     }
     return(
         <>
@@ -44,9 +48,11 @@ export const Login = () => {
                     <Input id="password" type="password" aria-describedby="password-help" onChange={e => setPassword(e.target.value)} required />
                     <FormHelperText id="password-help">please enter your password.</FormHelperText>
                 </FormControl>
-                <br />
+                <br /><br />
                 <Button type="submit" variant="outlined" color="primary" >Login</Button>
                 </form>
+                <p>To register in the website, please go to <Link to={'/signup'} >signup</Link>.</p>
+                {error && <p className="error">There was an error logging the user, please check if your credentials correct.</p>}
             </div>
         </>
     )

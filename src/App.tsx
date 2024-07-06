@@ -2,7 +2,7 @@ import './App.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Root, RootLoader } from './views/root'
 import { Login, LoginLoader } from './views/login'
-import Tickets from './views/tickets'
+import { Tickets } from './views/tickets'
 import { Register, RegisterLoader } from './views/register'
 
 
@@ -14,7 +14,7 @@ function App() {
       element: <Login />
     },
     {
-      path: '/register',
+      path: '/signup',
       loader: RegisterLoader,
       element: <Register />
     },
