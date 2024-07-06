@@ -48,6 +48,16 @@
     background-color: darkgray;
 }
 
+.tickets-container {
+    min-height: 250px;
+    max-width: 1165px;
+    margin: 0 auto;
+}
+
+.MuiDataGrid-scrollbar {
+    display: block !important;
+}
+
 @media screen and (max-width: 768px) {
     .container{
         max-width: 60vw;
@@ -59,3 +69,8 @@
         max-width: 80vw;
     }
 }
+@media (prefers-color-scheme: dark) {
+    .MuiDataGrid-cell, .MuiDataGrid-footerContainer, .MuiToolbar-root, .MuiTablePagination-actions {
+      color: #ffffff;
+    }
+  }

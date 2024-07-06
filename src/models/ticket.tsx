@@ -21,5 +21,5 @@ export type TicketView = {
     fecha_inicio: string
     fecha_fin: string
     horas_contratadas: number,
-    cliente: ClientTicket
+    cliente: string
 }

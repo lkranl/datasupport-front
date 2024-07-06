@@ -14,7 +14,7 @@ export const GetTicketService = async ():Promise<TicketGet[]> => {
                 'Authorization': token
             },
         }
-    ).then(res => {console.log(res);return res.json()})
+    ).then(res => {return res.json()})
     .then(data => {
         return data
     })
