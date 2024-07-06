@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import { Root, RootLoader } from './views/root'
 import { Login, LoginLoader } from './views/login'
 import Tickets from './views/tickets'
+import { Register, RegisterLoader } from './views/register'
 
 
 function App() {
@@ -11,6 +12,11 @@ function App() {
       path: '/login',
       loader: LoginLoader,
       element: <Login />
+    },
+    {
+      path: '/register',
+      loader: RegisterLoader,
+      element: <Register />
     },
     {
       path: '/',

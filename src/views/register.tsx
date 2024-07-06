@@ -4,10 +4,11 @@ import { FormControl, FormHelperText, InputLabel, Input, Button } from "@mui/mat
 import { FormEvent, useState } from "react"
 import AccountCircleIconOutlined from '@mui/icons-material/AccountCircleOutlined';
 import LockPersonOutlinedIcon from '@mui/icons-material/LockPersonOutlined';
-import { LoginUser } from "../models/userLogin";
-import { LoginService } from "../service/loginService";
+import BadgeOutlined from "@mui/icons-material/BadgeOutlined";
+import { RegisterUser } from "../models/userRegister";
+import { RegisterService } from "../service/registerService";
 
-export const LoginLoader = async () => {
+export const RegisterLoader = async () => {
     const loggedIn = sessionStorage.getItem('token')!==null
     if (loggedIn){
       return redirect('/tickets')
@@ -15,24 +16,33 @@ export const LoginLoader = async () => {
     return null
 }
 
-export const Login = () => {
+export const Register = () => {
+    const [fullName, setFullName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const user:LoginUser = {
-        email: email,
-        password: password
-    }
+    const [success, setSuccess] = useState(null)
     const onSubmit = async (e: FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
-        const success = await LoginService(user)
-        if (success)
-            location.reload()
+        const user:RegisterUser = {
+            fullname: fullName,
+            email: email,
+            password: password
+        }
+        
+        const response = await RegisterService(user)
+        setSuccess(response)
     }
     return(
         <>
             <div className="container">
                 <h2>DataSupport</h2>
                 <form action="/tickets" onSubmit={onSubmit}>
+                <FormControl>
+                    <InputLabel htmlFor='fullName'><BadgeOutlined sx={{fontSize: 15}} /> Full name:</InputLabel>
+                    <Input id="fullName" type="text" aria-describedby="fullNmae-help" onChange={e => setFullName(e.target.value)} required />
+                    <FormHelperText id="fullName-help">please enter your full name.</FormHelperText>
+                </FormControl>
+                <br /><br />
                 <FormControl>
                     <InputLabel htmlFor='email'><AccountCircleIconOutlined sx={{fontSize: 15}} /> Email:</InputLabel>
                     <Input id="email" type="email" aria-describedby="email-help" onChange={e => setEmail(e.target.value)} required />
@@ -45,8 +55,10 @@ export const Login = () => {
                     <FormHelperText id="password-help">please enter your password.</FormHelperText>
                 </FormControl>
                 <br />
-                <Button type="submit" variant="outlined" color="primary" >Login</Button>
+                <Button type="submit" variant="outlined" color="primary" >Register</Button>
                 </form>
+                {success===true && <>User created</>}
+                {success===false && <>Error creating user</>}
             </div>
         </>
     )
