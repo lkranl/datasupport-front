@@ -50,8 +50,20 @@
 
 .tickets-container {
     min-height: 250px;
-    max-width: 1165px;
+    max-width: 912px;
     margin: 0 auto;
+}
+
+.new-ticket {
+    padding: 10px 20px;
+    margin: 5px 0;
+    background-color: darkgray;
+    border-radius: 15px;
+}
+
+.new-ticket, .new-ticket form {
+    display: inline-flex;
+    align-items: center;
 }
 
 .MuiDataGrid-scrollbar {
@@ -61,6 +73,10 @@
 @media screen and (max-width: 768px) {
     .container{
         max-width: 60vw;
+    }
+
+    .new-ticket, .new-ticket form {
+        display: grid;
     }
 }
 

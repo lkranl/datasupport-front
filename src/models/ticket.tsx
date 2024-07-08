@@ -1,4 +1,5 @@
-import { ClientTicket } from "./client"
+import { ContractGet } from "./contract"
+import { SpecialtyGet } from "./specialty"
 
 export type TicketCreate = {
     descripcion: string
@@ -9,17 +10,24 @@ export type TicketCreate = {
 }
 
 export type TicketGet = {
-    id_contrato: number
-    fecha_inicio: string
-    fecha_fin: string
-    horas_contratadas: number,
-    cliente: ClientTicket
+    id_ticket: number
+    fecha_apertura: string
+    fecha_cierre: string
+    estado: string
+    contrato: ContractGet
+    especialidad: SpecialtyGet
+    descripcion: string
 }
 
 export type TicketView = {
     id: number
-    fecha_inicio: string
-    fecha_fin: string
-    horas_contratadas: number,
+    fecha_apertura: string
+    fecha_cierre: string
+    horas_contratadas: number
     cliente: string
+    contrato: number
+    especialidad: string
+    estado: string
 }
+
+export type TicketStatus = 'open' | 'closed'

@@ -12,7 +12,6 @@ export const RootLoader = async () => {
 export const Root = () => {
     const logout  = () => {
         sessionStorage.removeItem('token')
-        sessionStorage.removeItem('username')
         location.reload()
     }
     return(

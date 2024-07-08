@@ -25,7 +25,6 @@ export const Login = () => {
     }
     const onSubmit = async (e: FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
-        sessionStorage.setItem('username', email)
         const success = await LoginService(user)
         if (success)
             location.reload()

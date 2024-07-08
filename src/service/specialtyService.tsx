@@ -1,10 +1,10 @@
 import { API_URL } from "../models/api"
-import { TicketCreate, TicketGet } from "../models/ticket"
+import { SpecialtyCreate, SpecialtyGet } from "../models/specialty"
 
-export const GetTicketService = async ():Promise<TicketGet[]> => {
+export const GetSpecialtyService = async ():Promise<SpecialtyGet[]> => {
     const token = 'Bearer '+sessionStorage.getItem('token')
     return await fetch(
-        API_URL+'/ticket/all',
+        API_URL+'/especialidad/all',
         {
             method: 'GET',
             headers: {
@@ -23,10 +23,10 @@ export const GetTicketService = async ():Promise<TicketGet[]> => {
     })
 }
 
-export const PostTicketService = async (data: TicketCreate) => {
+export const PostSpecialtyService = async (data: SpecialtyCreate) => {
     const token = 'Bearer '+sessionStorage.getItem('token')
     return await fetch(
-        API_URL+'/ticket/crear',
+        API_URL+'/especialidad/crear',
         {
             method: 'POST',
             headers: {

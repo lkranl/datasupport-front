@@ -1,10 +1,10 @@
 import { API_URL } from "../models/api"
-import { TicketCreate, TicketGet } from "../models/ticket"
+import { ContractCreate, ContractGet } from "../models/contract"
 
-export const GetTicketService = async ():Promise<TicketGet[]> => {
+export const GetContractService = async ():Promise<ContractGet[]> => {
     const token = 'Bearer '+sessionStorage.getItem('token')
     return await fetch(
-        API_URL+'/ticket/all',
+        API_URL+'/contrato/all',
         {
             method: 'GET',
             headers: {
@@ -23,10 +23,10 @@ export const GetTicketService = async ():Promise<TicketGet[]> => {
     })
 }
 
-export const PostTicketService = async (data: TicketCreate) => {
+export const PostContractService = async (data: ContractCreate) => {
     const token = 'Bearer '+sessionStorage.getItem('token')
     return await fetch(
-        API_URL+'/ticket/crear',
+        API_URL+'/contrato/crear',
         {
             method: 'POST',
             headers: {
